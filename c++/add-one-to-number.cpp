@@ -1,4 +1,4 @@
-'''
+/*
 task
 
 Given a non-negative number represented as an array of digits, add 1 to the number ( increment the number represented by the digits ).
@@ -29,14 +29,34 @@ Example Explanation
 
 Given vector is [1, 2, 3].
 The returned vector should be [1, 2, 4] as 123 + 1 = 124.
-'''
 
-class Solution:
-    # @param A : list of integers
-    # @return a list of integers
-    def plusOne(self, A):
-        A[-1] += 1
-        return A
+*/
 
-solution = Solution()
-print(solution.plusOne([1, 2, 3]))
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Solution
+{
+    public:
+    vector<int> plusOne(vector<int> &A);
+};
+
+
+vector<int> Solution::plusOne(vector<int> &A)
+{
+    A[A.size() - 1] += 1;
+    return A;
+}
+
+int main(int argc, char* argv[])
+{
+
+    Solution solution;
+    
+    vector<int> A({1, 2, 3}); // we expect {1, 2, 4}
+    vector<int> newVector = solution.plusOne(A);
+
+    return EXIT_SUCCESS;
+}
