@@ -5,48 +5,52 @@ class Solution:
     # @return a list of integers
     def spiralOrder(self, A):
 
-        # dynmaic variables that indicate the length of iterations that need to be performed for each dimension
         num_rows = len(A[:])
         num_cols = len(A[0])
 
-        top_idx = 0
-        bottom_idx = num_rows - 1
-        left_idx = 0
-        right_idx = num_cols - 1
+        top_row_index = 0
+        bottom_row_index = num_rows - 1
+        
+        left_column_index = 0
+        right_column_index = num_cols - 1
 
-        result = []
-        while top_idx <= bottom_idx and left_idx <= right_idx:
+        spiral_A = list()
 
-            # traverse the topmost row
-            for i in range(left_idx, right_idx + 1):
-                result.append(A[top_idx][i])
+        while top_row_index <= bottom_row_index and left_column_index <= right_column_index:
 
-            top_idx += 1
+            # loop thru the topmost row
+            for col in range(left_column_index, right_column_index + 1):
+                current_num = A[top_row_index][col]
+                spiral_A.append(current_num)
 
-            # traverse rightmost column
-            for i in range(top_idx, bottom_idx + 1):
-                result.append(A[i][right_idx])
+            top_row_index += 1
 
-            right_idx -= 1
+            # loop thru the right most column
+            for row in range(top_row_index, bottom_row_index + 1):
+                current_num = A[row][right_column_index]
+                spiral_A.append(current_num)
 
-            # check remaining cols / rows
-            if top_idx <= bottom_idx:
+            right_column_index -= 1
 
-                # traverse bottom row
-                for i in range(right_idx, left_idx - 1, -1):
-                    result.append(A[bottom_idx][i])
+            if top_row_index <= bottom_row_index:
 
-                bottom_idx -= 1
+                # loop thru the bottom row
+                for col in range(right_column_index, left_column_index - 1, -1):
+                    current_num = A[bottom_row_index][col]
+                    spiral_A.append(current_num)
+
+                bottom_row_index -= 1
+
+            if left_column_index <= right_column_index:
+
+                # loop thru the left column
+                for row in range(bottom_row_index, top_row_index - 1, -1):
+                    current_num = A[row][left_column_index]
+                    spiral_A.append(current_num)
                 
-            if left_idx <= right_idx:
+                left_column_index -= 1
 
-                for i in range(bottom_idx, top_idx - 1, -1):
-                    result.append(A[i][left_idx])
-
-                left_idx += 1
-            
-        return result
-
+        return spiral_A
 
 solution = Solution()
 
