@@ -45,7 +45,7 @@ class Solution:
         b = None
         n = len(A)
 
-        a_list = list()
+        a_dict = dict() # I'm using a dictionary because it's much faster
 
         total_sum = 0
         expected_sum = 0
@@ -57,8 +57,8 @@ class Solution:
         for number in A:
 
             # first occurance of this number
-            if not number in a_list:
-                a_list.append(number)
+            if a_dict.get(number) == None:
+                a_dict[number] = 1
 
             # second occurance of this number, this is a!
             else:
@@ -73,6 +73,7 @@ class Solution:
         b = abs(total_sum - expected_sum)
 
         return [a, b]
+
 
 s = Solution()
 print(s.repeatedNumber([3, 1, 2, 5, 3]))
