@@ -19,36 +19,40 @@ class Solution:
         while top_row_index <= bottom_row_index and left_column_index <= right_column_index:
 
             # loop thru the topmost row
-            for col in range(left_column_index, right_column_index + 1):
-                current_num = A[top_row_index][col]
-                spiral_A.append(current_num)
+            if left_column_index <= right_column_index:
 
-            top_row_index += 1
+                for col in range(left_column_index, right_column_index + 1):
+                    current_num = A[top_row_index][col]
+                    spiral_A.append(current_num)
+
+                top_row_index += 1
 
             # loop thru the right most column
-            for row in range(top_row_index, bottom_row_index + 1):
-                current_num = A[row][right_column_index]
-                spiral_A.append(current_num)
-
-            right_column_index -= 1
-
             if top_row_index <= bottom_row_index:
 
-                # loop thru the bottom row
+                for row in range(top_row_index, bottom_row_index + 1):
+                    current_num = A[row][right_column_index]
+                    spiral_A.append(current_num)
+
+                right_column_index -= 1
+
+            # loop thru the bottom row
+            if top_row_index <= bottom_row_index:
+
                 for col in range(right_column_index, left_column_index - 1, -1):
                     current_num = A[bottom_row_index][col]
                     spiral_A.append(current_num)
 
                 bottom_row_index -= 1
 
+            # loop thru the left column
             if left_column_index <= right_column_index:
 
-                # loop thru the left column
                 for row in range(bottom_row_index, top_row_index - 1, -1):
                     current_num = A[row][left_column_index]
                     spiral_A.append(current_num)
                 
-                left_column_index -= 1
+                left_column_index += 1
 
         return spiral_A
 
@@ -62,7 +66,6 @@ print(solution.spiralOrder(
     ]
 ))
 
-	
 print(solution.spiralOrder(
 	    [
         [ 1, 2, 3 ],
