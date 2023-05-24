@@ -45,16 +45,15 @@ class Solution:
         b = None
         n = len(A)
 
-        a_dict = dict() # I'm using a dictionary because it's much faster
+        a_dict = dict() # I'm using a dictionary because it's much faster that a list
 
         total_sum = 0
         expected_sum = 0
 
-        # compute the expected sum for this array
-        for i in range(1, n + 1):
-            expected_sum += i
+        for i, number in enumerate(A):
 
-        for number in A:
+            # `i` actually starts at 1, so it has a constant offset
+            expected_sum += (i + 1)
 
             # first occurance of this number
             if a_dict.get(number) == None:
