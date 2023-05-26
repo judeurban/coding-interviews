@@ -35,8 +35,24 @@ class Solution:
     # @param A : list of integers
     # @return a list of integers
     def plusOne(self, A):
-        A[-1] += 1
-        return A
+
+        # cast the array as a string, then do math, then return it as a list
+
+        original_number_string_representation = ""
+        for number in A:
+            original_number_string_representation = original_number_string_representation + str(number)
+
+        # do some math
+        original_number = int(original_number_string_representation)
+
+        new_number_string_representation = str(original_number + 1)
+
+        result = []
+        for character in new_number_string_representation:
+            result.append(int(character))
+
+        return result
 
 solution = Solution()
-print(solution.plusOne([1, 2, 3]))
+print(solution.plusOne(A = [ 0 ]))
+print(solution.plusOne(A = [ 9, 9, 9, 9, 9 ]))
